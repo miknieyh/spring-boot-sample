@@ -1,6 +1,8 @@
 package com.sample.springbootsample;
 
+import com.sample.springbootsample.domain.SanhaIt;
 import com.sample.springbootsample.domain.SanhaItRepository;
+import com.sample.springbootsample.domain.Yanolja;
 import com.sample.springbootsample.domain.YanoljaRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +34,10 @@ class SpringBootSampleApplicationTests {
      @Test
      void Yanolja_save() {
           //given
+          String yanoljaName = "야놀자1";
+          String sanhaItName = "산하1";
+
+          String url = "http://localhost"+port+"/api/v1/posts";
 
           //when
 

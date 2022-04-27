@@ -1,22 +1,29 @@
 package com.sample.springbootsample.domain;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Setter
 @Getter
+@NoArgsConstructor
+@Table(name = "SANHA_IT")
 @Entity
 public class SanhaIt {
 
-     @Id
-     @GeneratedValue
-     private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-     private String name;
+    private String name;
 
-     @ManyToOne
-     @JoinColumn(name="YANOLJA_ID")
-     private Yanolja yanolja;
+    @ManyToOne
+    @JoinColumn(name = "YANOLJA_ID")
+    private Yanolja yanolja;
+
+    @Builder
+    public SanhaIt(String name) {
+        this.name = name;
+    }
 }

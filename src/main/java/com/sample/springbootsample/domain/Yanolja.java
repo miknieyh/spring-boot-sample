@@ -1,29 +1,40 @@
 package com.sample.springbootsample.domain;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
 @Getter
+@NoArgsConstructor
+@Table(name = "YANOLJA")
 @Entity
 public class Yanolja {
 
-     @Id
-     @GeneratedValue
-     @Column(name = "YANOLJA_ID")
-     private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "YANOLJA_ID")
+    private Long id;
 
-     private String name;
+    private String name;
 
-     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-     private List<SanhaIt> sanhaItList = new ArrayList<>();
+    @OneToMany(mappedBy = "yanolja", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SanhaIt> sanhaItList = new ArrayList<>();
 
-     public void addSanha(SanhaIt sanhaIt){
-          sanhaItList.add(sanhaIt);
-          sanhaIt.setYanolja(this);
-     }
+    @Builder
+    public Yanolja(String name) {
+        this.name = name;
+    }
+
+    public void addSanha(SanhaIt sanhaIt) {
+        if (this.sanhaItList == null) {
+            this.sanhaItList = new ArrayList<>();
+        }
+        this.sanhaItList.add(sanhaIt);
+    }
+
+
 }
