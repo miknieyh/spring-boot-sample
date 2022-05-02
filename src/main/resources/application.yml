@@ -16,3 +16,7 @@ spring:
       hibernate:
         format_sql: true
         show_sql : true
+logging:
+  slack:
+    webhook-url: https://hooks.slack.com/services/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
+  config: classpath:logback-spring.xml
